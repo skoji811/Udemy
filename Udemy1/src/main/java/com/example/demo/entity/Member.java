@@ -6,7 +6,7 @@ public class Member {
 	private String name;
 	private String email;
 	
-	public Member () {;}
+	public Member () {};
 
 	public Member(int id, String name, String email) {
 		this.id = id;
