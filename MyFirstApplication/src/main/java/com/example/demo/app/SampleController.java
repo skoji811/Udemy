@@ -22,12 +22,13 @@ public class SampleController {
 	@GetMapping("/test")
 	public String test(Model model) {
 		
-		String sql = "SELECT id,name,email"
+		String sql = "SELECT id,name,email "
 				+ "FROM inquiry WHERE id = 1";
 		Map<String,Object> map = jdbcTemplate.queryForMap(sql);
+		model.addAttribute("title", "Inquiry Form");
 		model.addAttribute("name",map.get("name"));
 		model.addAttribute("email",map.get("email"));
-		model.addAttribute("title", "Inquiry Form");
+
 		return "test";
 	}
 }
