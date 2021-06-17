@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.demo.app.inquiry.InquiryForm;
-
 @Controller
 @RequestMapping("/survey")
 public class SurveyController {
@@ -28,22 +26,25 @@ public class SurveyController {
 		return "survey/form";
 	}
 	@PostMapping("/confirm")
-	public String confirm(@Validated InquiryForm inquiryForm, BindingResult result, Model model) {
+	public String confirm(@Validated SurveyForm surveyForm, 
+			BindingResult result, Model model) {
 		if(result.hasErrors()) {
-			model.addAttribute("title","InquiryForm");
+			model.addAttribute("title","survey form");
 			return "survey/form";
+		}
+		model.addAttribute("title","confirm page");
+		return "survey/confirm";
 	}
-	model.addAttribute("title","confirm page");
-		return "inquiry/confirm";
-}
 	@PostMapping("/complete")
-	public String complete(@Validated InquiryForm inquiryForm,
-			BindingResult result,Model model,RedirectAttributes redirectAttributes) {
+	public String complete(@Validated SurveyForm surveyForm , 
+			BindingResult result,Model model,
+			RedirectAttributes redirectAttributes) {
 		if(result.hasErrors()) {
-			model.addAttribute("title","Inquiry Form");
-		return "inquiry/form";
+			model.addAttribute("title","survey form");
+			return "survey/form";
+		}
+		redirectAttributes.addFlashAttribute("complete","登録完了！");
+		return "redirect:/survey/form";
 	}
-	redirectAttributes.addFlashAttribute("complete" , "Registerd!");
-	return "redirect:/inquiry/form";
-}
+	
 }
