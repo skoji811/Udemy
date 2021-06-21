@@ -11,12 +11,12 @@
 	<tr>
 		<th>id</th><th>name</th><th>email</th><th>contents</th><th>datetime</th>
 	</tr>
-	<tr th:each="inquiry : ${inquiryList}">
-		<td th:text="${inquiry.id}">1</td>
-		<td th:text="${inquiry.name}"></td>
-		<td th:text="${inquiry.email}"></td>
-		<td th:text="${inquiry.contents}"></td>
-		<td th:text="${inquiry.created}"></td>
+	<tr th:each="survey : ${surveyList}">
+		<td th:text="${survey.id}">1</td>
+		<td th:text="${survey.age}"></td>
+		<td th:text="${survey.satisfaction}"></td>
+		<td th:text="${survey.comment}"></td>
+		<td th:text="${survey.created}"></td>
 	</tr>
 </table>
 </body>
