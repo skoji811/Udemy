@@ -31,7 +31,12 @@ public class InquiryController {
 	
 	@GetMapping
 	public String index(Model model) {
-		List<Inquiry> list = inquiryService;
+		List<Inquiry> list = inquiryService.getAll();
+		
+		model.addAttribute("inquiryList",list);
+		model.addAttribute("title", "inquiry Index");
+		
+		return "inquiry/index";
 	}
 
 	@GetMapping("/form")
