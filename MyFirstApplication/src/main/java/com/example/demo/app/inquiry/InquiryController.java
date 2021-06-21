@@ -27,6 +27,11 @@ public class InquiryController {
 	public InquiryController(InquiryService inquiryService) {
 		this.inquiryService = inquiryService;
 	}
+	
+	@GetMapping
+	public String index(Model model) {
+		List<Inquiry> list = inquiryService;
+	}
 
 	@GetMapping("/form")
 	public String form(InquiryForm inquiryForm ,
