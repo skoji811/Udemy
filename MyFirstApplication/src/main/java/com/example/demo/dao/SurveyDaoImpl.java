@@ -37,7 +37,7 @@ public class SurveyDaoImpl implements SurveyDao {
 			survey.setId((int)result.get("id"));
 			survey.setAge((int)result.get("age"));
 			survey.setSatisfaction((int)result.get("satisfaction"));
-			survey.setComment((String)result.get("commnt"));
+			survey.setComment((String)result.get("comment"));
 			survey.setCreated(((Timestamp)result.get("created")).toLocalDateTime());
 			list.add(survey);
 		}
