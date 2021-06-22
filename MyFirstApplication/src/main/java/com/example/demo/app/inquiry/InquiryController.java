@@ -35,8 +35,8 @@ public class InquiryController {
 		List<Inquiry> list = inquiryService.getAll();
 		
 		Inquiry inquiry = new Inquiry();
-		inquiry.setId(4);
-		inquiry.setName("unko");
+		inquiry.setId(5);
+		inquiry.setName("kojikoji");
 		inquiry.setEmail("sample4@example.com");
 		inquiry.setContents("hello");
 		
