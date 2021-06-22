@@ -37,14 +37,14 @@ public class InquiryController {
 		Inquiry inquiry = new Inquiry();
 		inquiry.setId(4);
 		inquiry.setName("unko");
-		inquiry.setEmail("sao9999@gmail.com");
+		inquiry.setEmail("sample4@example.com");
 		inquiry.setContents("hello");
 		
 		try {
 			inquiryService.update(inquiry);
 			
 		}catch(InquiryNotFoundException e) {
-			model.addAttribute("message" ,e);
+			model.addAttribute("message", e);
 			return "error/CustomPage";
 		}
 		
