@@ -34,24 +34,24 @@ public class InquiryController {
 	public String index(Model model) {
 		List<Inquiry> list = inquiryService.getAll();
 		
-		Inquiry inquiry = new Inquiry();
-		inquiry.setId(5);
-		inquiry.setName("kojikoji");
-		inquiry.setEmail("sample4@example.com");
-		inquiry.setContents("hello");
-		
-		try {
-			inquiryService.update(inquiry);
-			
-		}catch(InquiryNotFoundException e) {
-			model.addAttribute("message", e);
-			return "error/CustomPage";
-		}
+//		Inquiry inquiry = new Inquiry();
+//		inquiry.setId(5);
+//		inquiry.setName("kojikoji");
+//		inquiry.setEmail("sample4@example.com");
+//		inquiry.setContents("hello");
+//		
+//		try {
+//			inquiryService.update(inquiry);
+//			
+//		}catch(InquiryNotFoundException e) {
+//			model.addAttribute("message", e);
+//			return "error/CustomPage";
+//		}
 		
 		model.addAttribute("inquiryList",list);
 		model.addAttribute("title", "inquiry Index");
 		
-		return "inquiry/index";
+		return "inquiry/index_boot";
 	}
 
 	@GetMapping("/form")
