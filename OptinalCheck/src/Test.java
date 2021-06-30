@@ -1,9 +1,21 @@
+import java.util.Optional;
 
 public class Test {
 
 	public static void main(String[] args) {
-		// TODO 自動生成されたメソッド・スタブ
+		
+		String str = null;
+//		System.out.println(str.length());
+		
+		Optional<String> strOpt = Optional.ofNullable(str);
+		if(strOpt.isPresent()) {
+			String message = strOpt.get();
+			System.out.println(message.length());
+			
 
+			}
+		strOpt.ifPresent(v -> System.out.println(v.length()));
+		}
 	}
 
-}
+
