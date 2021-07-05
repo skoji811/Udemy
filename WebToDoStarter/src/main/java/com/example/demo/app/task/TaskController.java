@@ -83,6 +83,7 @@ public class TaskController {
         	Task task = makeTask(taskForm,0);
         	
         	//一件挿入後リダイレクト
+        	taskService.insert(task);
 
             return "";
         } else {
