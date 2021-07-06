@@ -114,7 +114,7 @@ public class TaskController {
     	
 
         //TaskFormへの詰め直し
-    	Optional<TaskForm> taskFormOpt = taskOpt.map(t -> makeTaskForm(t));
+    	Optional<TaskForm> taskFormOpt = taskOpt.map( t -> makeTaskForm(t));
         //TaskFormがnullでなければ中身を取り出し
     	if(taskFormOpt.isPresent()) {
     		taskForm = taskFormOpt.get();
