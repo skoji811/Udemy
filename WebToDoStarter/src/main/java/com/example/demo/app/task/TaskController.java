@@ -110,10 +110,15 @@ public class TaskController {
         Model model) {
 
     	//Taskを取得(Optionalでラップ)
+    	Optional<Task> taskOpt = taskService.getTask(id);
+    	
 
         //TaskFormへの詰め直し
-
+    	Optional<TaskForm> taskFormOpt = taskOpt.map(t -> makeTaskForm(t));
         //TaskFormがnullでなければ中身を取り出し
+    	if(taskFormOpt.isPresent()) {
+    		taskForm = taskFormOpt.get();
+    	}
 
         model.addAttribute("taskForm", "");
         List<Task> list = taskService.findAll();
