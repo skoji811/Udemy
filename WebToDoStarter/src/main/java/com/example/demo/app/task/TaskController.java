@@ -85,7 +85,7 @@ public class TaskController {
         	//一件挿入後リダイレクト
         	taskService.insert(task);
 
-            return "";
+            return "redirect:/task";
         } else {
             taskForm.setNewTask(true);
             model.addAttribute("taskForm", taskForm);
