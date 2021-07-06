@@ -173,8 +173,8 @@ public class TaskController {
     	Model model) {
 
     	//タスクを一件削除しリダイレクト
-
-        return "";
+    	taskService.deleteById(id);
+        return "redirect:/task";
     }
 
     /**
