@@ -110,7 +110,7 @@ public class TaskController {
         Model model) {
 
     	//Taskを取得(Optionalでラップ)
-    	Optional<Task> taskOpt = taskService.getTask(id);
+    	Optional<Task> taskOp = taskService.getTask(id);
     	
 
         //TaskFormへの詰め直し
