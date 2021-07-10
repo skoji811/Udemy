@@ -80,7 +80,7 @@ public class TaskController {
 //        	task.setDetail(taskForm.getDetail());
 //        	task.setDeadline(taskForm.getDeadline());
         	
-        	Task task = makeTask(taskForm,0);
+        	Task task = makeTask(taskForm, 0);
         	
         	//一件挿入後リダイレクト
         	taskService.insert(task);
