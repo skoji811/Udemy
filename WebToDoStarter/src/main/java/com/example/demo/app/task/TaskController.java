@@ -67,10 +67,7 @@ public class TaskController {
     	@Valid @ModelAttribute TaskForm taskForm,
         BindingResult result,
         Model model) {
-
-        if (!result.hasErrors()) {
-
-        	
+	
 
         	//TaskFormのデータをTaskに格納
 //        	Task task = new Task();
@@ -81,7 +78,7 @@ public class TaskController {
 //        	task.setDeadline(taskForm.getDeadline());
         	
         	Task task = makeTask(taskForm, 0);
-        	
+            if (!result.hasErrors()) {
         	//一件挿入後リダイレクト
         	taskService.insert(task);
 
@@ -177,67 +174,67 @@ public class TaskController {
         return "redirect:/task";
     }
 
-    /**
-     * 複製用に一件タスクデータを取得し、フォーム内に表示
-     * @param taskForm
-     * @param id
-     * @param model
-     * @return
-     */
-    //1-1　"　/duplicate"に対してマッピングを行うアノテーションを記述する
-    public String duplicate(
-    	TaskForm taskForm,
-    	//1-2　Requestパラメータから"taskId"の名前でint idを取得するようにする
-    	int id,
-        Model model) {
-
-    	//1-3　taskService.getTaskを用いてTaskを取得する
-        Optional<Task> taskOpt = null;
-
-        //TaskFormへの詰め直し
-    	Optional<TaskForm> taskFormOpt = taskOpt.map(t -> makeTaskForm(t));
-
-        //TaskFormがnullでなければ中身を取り出し
-        if(taskFormOpt.isPresent()) {
-        	taskForm = taskFormOpt.get();
-        }
-
-        //新規登録のためNewTaskにtrueをセット
-        taskForm.setNewTask(true);
-
-        model.addAttribute("taskForm", taskForm);
-        List<Task> list = taskService.findAll();
-        model.addAttribute("list", list);
-        model.addAttribute("title", "タスク一覧");
-
-        return "task/index";
-    }
-
-    /**
-     * 選択したタスクタイプのタスク一覧を表示
-     * @param taskForm
-     * @param id
-     * @param model
-     * @return
-     */
-    //2-4 "/selectType"に対してマッピングを行うアノテーションを記述する
-    public String selectType(
-    	TaskForm taskForm,
-    	//2-5 Requestパラメータから"typeId"の名前でint idを取得するようにする
-    	int id,
-        Model model) {
-
-    	//新規登録か更新かを判断する仕掛け
-        taskForm.setNewTask(true);
-
-        //2-6 taskService.findByTypeを用いてTaskのリストを取得する
-        List<Task> list = null;
-
-        model.addAttribute("list", list);
-        model.addAttribute("title", "タスク一覧");
-
-        return "task/index";
-    }
+//    /**
+//     * 複製用に一件タスクデータを取得し、フォーム内に表示
+//     * @param taskForm
+//     * @param id
+//     * @param model
+//     * @return
+//     */
+//    //1-1　"　/duplicate"に対してマッピングを行うアノテーションを記述する
+//    public String duplicate(
+//    	TaskForm taskForm,
+//    	//1-2　Requestパラメータから"taskId"の名前でint idを取得するようにする
+//    	int id,
+//        Model model) {
+//
+//    	//1-3　taskService.getTaskを用いてTaskを取得する
+//        Optional<Task> taskOpt = null;
+//
+//        //TaskFormへの詰め直し
+//    	Optional<TaskForm> taskFormOpt = taskOpt.map(t -> makeTaskForm(t));
+//
+//        //TaskFormがnullでなければ中身を取り出し
+//        if(taskFormOpt.isPresent()) {
+//        	taskForm = taskFormOpt.get();
+//        }
+//
+//        //新規登録のためNewTaskにtrueをセット
+//        taskForm.setNewTask(true);
+//
+//        model.addAttribute("taskForm", taskForm);
+//        List<Task> list = taskService.findAll();
+//        model.addAttribute("list", list);
+//        model.addAttribute("title", "タスク一覧");
+//
+//        return "task/index";
+//    }
+//
+//    /**
+//     * 選択したタスクタイプのタスク一覧を表示
+//     * @param taskForm
+//     * @param id
+//     * @param model
+//     * @return
+//     */
+//    //2-4 "/selectType"に対してマッピングを行うアノテーションを記述する
+//    public String selectType(
+//    	TaskForm taskForm,
+//    	//2-5 Requestパラメータから"typeId"の名前でint idを取得するようにする
+//    	int id,
+//        Model model) {
+//
+//    	//新規登録か更新かを判断する仕掛け
+//        taskForm.setNewTask(true);
+//
+//        //2-6 taskService.findByTypeを用いてTaskのリストを取得する
+//        List<Task> list = null;
+//
+//        model.addAttribute("list", list);
+//        model.addAttribute("title", "タスク一覧");
+//
+//        return "task/index";
+//    }
 
 
     /**
