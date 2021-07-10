@@ -110,11 +110,11 @@ public class TaskController {
         Model model) {
 
     	//Taskを取得(Optionalでラップ)
-    	Optional<Task> taskOp = taskService.getTask(id);
+    	Optional<Task> taskOpt = taskService.getTask(id);
     	
 
         //TaskFormへの詰め直し
-    	Optional<TaskForm> taskFormOpt = taskOpt.map( t -> makeTaskForm(t));
+    	Optional<TaskForm> taskFormOpt = taskOpt.map(t -> makeTaskForm(t));
         //TaskFormがnullでなければ中身を取り出し
     	if(taskFormOpt.isPresent()) {
     		taskForm = taskFormOpt.get();
@@ -184,34 +184,34 @@ public class TaskController {
      * @param model
      * @return
      */
-    //1-1　"　/duplicate"に対してマッピングを行うアノテーションを記述する
-    public String duplicate(
-    	TaskForm taskForm,
-    	//1-2　Requestパラメータから"taskId"の名前でint idを取得するようにする
-    	int id,
-        Model model) {
-
-    	//1-3　taskService.getTaskを用いてTaskを取得する
-        Optional<Task> taskOpt = null;
-
-        //TaskFormへの詰め直し
-        Optional<TaskForm> taskFormOpt = taskOpt.map(t -> makeTaskForm(t));
-
-        //TaskFormがnullでなければ中身を取り出し
-        if(taskFormOpt.isPresent()) {
-        	taskForm = taskFormOpt.get();
-        }
-
-        //新規登録のためNewTaskにtrueをセット
-        taskForm.setNewTask(true);
-
-        model.addAttribute("taskForm", taskForm);
-        List<Task> list = taskService.findAll();
-        model.addAttribute("list", list);
-        model.addAttribute("title", "タスク一覧");
-
-        return "task/index";
-    }
+//    //1-1　"　/duplicate"に対してマッピングを行うアノテーションを記述する
+//    public String duplicate(
+//    	TaskForm taskForm,
+//    	//1-2　Requestパラメータから"taskId"の名前でint idを取得するようにする
+//    	int id,
+//        Model model) {
+//
+//    	//1-3　taskService.getTaskを用いてTaskを取得する
+//        Optional<Task> taskOpt = null;
+//
+//        //TaskFormへの詰め直し
+//    	Optional<TaskForm> taskFormOpt = taskOpt.map(t -> makeTaskForm(t));
+//
+//        //TaskFormがnullでなければ中身を取り出し
+//        if(taskFormOpt.isPresent()) {
+//        	taskForm = taskFormOpt.get();
+//        }
+//
+//        //新規登録のためNewTaskにtrueをセット
+//        taskForm.setNewTask(true);
+//
+//        model.addAttribute("taskForm", taskForm);
+//        List<Task> list = taskService.findAll();
+//        model.addAttribute("list", list);
+//        model.addAttribute("title", "タスク一覧");
+//
+//        return "task/index";
+//    }
 
     /**
      * 選択したタスクタイプのタスク一覧を表示
