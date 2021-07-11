@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -105,11 +106,12 @@ class TaskServiceImplUnitTest {
         // モッククラスのI/Oをセット
     	when(dao.findById(1)).thenReturn(taskOpt);
         // サービスを実行
+    	Optional<Task> taskActual = taskServiceImpl.getTask(1);
 
         // モックの指定メソッドの実行回数を検査
-
+    	verify(dao , times(1)).findById(1);
         //Taskが存在していることを確認
-
+    	assertTrue(taskActual.isPresent());
     }
 
     @Test // テストケース　ユニットテストではデータベースの例外は考えない
@@ -118,8 +120,13 @@ class TaskServiceImplUnitTest {
     void throwNotFoundException() {
 
         // モッククラスのI/Oをセット
+    	when(dao.deleteById(0)).thenReturn(0);
 
     	//削除対象が存在しない場合、例外が発生することを検査
-
+    	try {
+    		taskServiceImpl.deleteById(0);
+    	} catch (TaskNotFoundException e){
+    		assertEquals(e.getMessage(),"削除するタスクが存在しません");
+    	}
     }
 }
