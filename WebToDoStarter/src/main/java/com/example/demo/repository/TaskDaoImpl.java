@@ -53,6 +53,7 @@ public class TaskDaoImpl implements TaskDao {
 			type.setComment((String)result.get("comment"));
 
 			//TaskにTaskTypeをセット
+			task.setTaskType(type);
 
 			list.add(task);
 		}
