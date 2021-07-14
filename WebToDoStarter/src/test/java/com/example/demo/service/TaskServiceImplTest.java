@@ -41,7 +41,7 @@ class TaskServiceImplTest {
     void testFindAllCheckCount() {
     	//全件取得
     	List<Task> list = taskService.findAll();
-        //Taskテーブルに入っている2件が取得できているか確認
+        //Taskテーブルに入っている2件が取得で きているか確認
     	assertEquals(2,list.size());
     	
     }
